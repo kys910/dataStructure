@@ -47,6 +47,6 @@ public class problem01 {
 
 	public static void main(String[] args) {
 		int[] result = solution(new int[]{1,2,3,4,6}, new int[]{0,2,4,6,8});
-		System.out.println(Arrays.toString(result));
+		//System.out.println(Arrays.toString(result));
 	}
 }
