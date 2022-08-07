@@ -4,12 +4,16 @@ public class Main {
     public static void main(String[] args){
         Trie trie = new Trie();
 
-        trie.insert("test");
-        trie.insert("busy");
-        trie.insert("card");
-        trie.insert("cap");
+        trie.insert("get");
+        trie.insert("go");
+        trie.insert("got");
+        trie.insert("gotten");
+        trie.insert("hall");
+        trie.insert("ham");
+        trie.insert("hammer");
+        trie.insert("hill");
+        trie.insert("zebra");
 
-        System.out.println(trie.search("busy"));
-        System.out.println(trie.search("bus"));
+        trie.printAll();
     }
 }

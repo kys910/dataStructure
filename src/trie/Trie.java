@@ -37,4 +37,12 @@ public class Trie {
         // 그러므로 현재 노드가 단어의 끝인지 아닌지 체크하는 변수로 리턴
         return node.endOfword;
     }
+
+    void printAll(){
+        Node node = this.rootNode;
+
+        while(!node.chiledNode.isEmpty()){
+            System.out.println(node);
+        }
+    }
 }
