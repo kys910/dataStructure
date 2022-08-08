@@ -45,4 +45,12 @@ public class ysGraph<T, T2> {
     public ArrayList<T2> getT2() {
         return t2;
     }
+
+    @Override
+    public String toString() {
+        return "ysGraph{" +
+                "t=" + t +
+                ", t2=" + t2 +
+                '}';
+    }
 }

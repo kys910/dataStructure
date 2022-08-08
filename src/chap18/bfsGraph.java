@@ -27,6 +27,7 @@ public class bfsGraph {
         gral.add(new ysGraph("P", new String[]{"N"}));
 
         System.out.println(bfs(gral));
+        System.out.println(bfs(gral, "Z").toString());
     }
 
     public static String bfs(ArrayList<ysGraph> ys) {
@@ -46,6 +47,40 @@ public class bfsGraph {
         while (!queue.isEmpty()) {
             ysGraph yg = queue.poll();
             result = result + yg.getT() + " | ";
+
+            ArrayList<String> al = yg.getT2();
+
+            for (int i = 0; i < al.size(); i++) {
+                if (grHm.get(al.get(i)) == null) {
+                    queue.add(hashYsGraph.get(al.get(i)));
+                    grHm.put(al.get(i), true);
+                }
+            }
+        }
+        return result;
+    }
+
+    public static ysGraph bfs(ArrayList<ysGraph> ys, String vertex) {
+        ArrayList<ysGraph> gral = ys;
+        HashMap<String, ysGraph> hashYsGraph = new HashMap<>();
+        HashMap<String, Boolean> grHm = new HashMap<>();
+        Queue<ysGraph> queue = new LinkedList<ysGraph>();
+        ysGraph result = null;
+
+        queue.add(gral.get(0));
+        grHm.put((String) gral.get(0).getT(), true);
+
+        for (ysGraph ysGraph : ys) {
+            hashYsGraph.put((String) ysGraph.getT(), ysGraph);
+        }
+
+        while (!queue.isEmpty()) {
+            ysGraph yg = queue.poll();
+            if(yg.getT().equals(vertex)){
+                result = yg;
+                break;
+            }
+            //result = result + yg.getT() + " | ";
 
             ArrayList<String> al = yg.getT2();
 
