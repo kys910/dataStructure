@@ -1,8 +1,6 @@
 package chap18;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class ysArrowGraph<T, T2, T3> {
@@ -37,21 +35,37 @@ public class ysArrowGraph<T, T2, T3> {
     }
     */
 
+    public T3 getCityPrice(String city){
+        return hm.get(city);
+    }
+
     public void getData(){
         System.out.println("vertex : " + t);
 
         for(Map.Entry<T2, T3> elem : hm.entrySet()){
             System.out.println("키 : " + elem.getKey() + " | 값 : " + elem.getValue());
         }
-
         /*
         Iterator<T2> keys = hm.keySet().iterator();
         while(keys.hasNext()){
             T2 key = keys.next();
             System.out.println();
         }
+        */
+    }
 
- */
+    public String getMinVertex(){
+        int min = Integer.MAX_VALUE;
+        String vertex = "";
+
+        for(Map.Entry<T2, T3> elem : hm.entrySet()){
+            if((int)elem.getValue() < min){
+                vertex = (String)elem.getKey();
+                min = (int)elem.getValue();
+            }
+        }
+
+        return vertex;
     }
 
     public T getT() {
