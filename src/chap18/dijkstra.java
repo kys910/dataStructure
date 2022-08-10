@@ -29,9 +29,11 @@ public class dijkstra {
         hm.put("Boston", 100);
         ysGraphHashMap.put("Atlanta", new ysArrowGraph("Atlanta", hm));
 
+        /*
         for(Map.Entry<String, ysArrowGraph> elem : ysGraphHashMap.entrySet()){
             System.out.println("키 : " + elem.getKey() + " | 값 : " + elem.getValue());
         }
+        */
 
         dijkstra(ysGraphHashMap);
     }
@@ -62,23 +64,28 @@ public class dijkstra {
 
             for(Object key : yg.getT2().keySet()){
                 String city = (String)key;
+
                 if(visted_cities.get(city) == null){
                     unvisted_cities.add((String)key);
                 }
+
                 int price_through_current_city = 0;
                 if(cheapest_prices_table.get(current_city) != null){
                     price_through_current_city = cheapest_prices_table.get(current_city) + (int)yg.getCityPrice(city);
                 }
 
-                if(cheapest_prices_table.get(city) != null){
+                if(cheapest_prices_table.get(city) == null){
+                    cheapest_prices_table.put(city, price_through_current_city);
+                    cheapest_previous_stopover_city_table.put(city, current_city);
+                }
+                else{
                     if(price_through_current_city < cheapest_prices_table.get(city)){
                         cheapest_prices_table.put(city, price_through_current_city);
                         cheapest_previous_stopover_city_table.put(city, current_city);
                     }
                 }
 
-                HashMap<String, Integer> hm = yg.getT2();
-
+               /*
                 if(cheapest_prices_table.get(current_city) != null){
                     int minCity = cheapest_prices_table.get(current_city);
                     current_city = null;
@@ -92,9 +99,25 @@ public class dijkstra {
                 }else{
                     current_city = null;
                 }
+                */
+
                 //current_city = cheapest_prices_table.get(current_city);
                 //current_city = unvisted_cities.get()
             }
+
+            HashMap<String, Integer> hm = yg.getT2();
+            String next_city = null;
+            int min = Integer.MAX_VALUE;
+            for (int i = 0; i < unvisted_cities.size(); i++) {
+                if(yg.getT2().get(unvisted_cities.get(i)) != null){
+                    if(min > (int)yg.getT2().get(unvisted_cities.get(i))){
+                        min = (int)yg.getT2().get(unvisted_cities.get(i));
+                        next_city = unvisted_cities.get(i);
+                    }
+                }
+            }
+
+            current_city = next_city;
         }
         System.out.println(cheapest_prices_table.toString());
         System.out.println(cheapest_previous_stopover_city_table);
